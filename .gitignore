@@ -4,6 +4,8 @@ node_modules/
 haters/
 .next/
 .build/
+finished-application/
+stepped-solutions/
 layout.md
 variables.env
 *.env

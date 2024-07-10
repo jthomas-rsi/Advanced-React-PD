@@ -9,6 +9,14 @@ This is course is being completed as professional development in order to increa
 - Component Testing
 - Documentation / Technical Writing
 
+## Starting Application
+
+This application must use Node version 16. In order to run this app utilize nvm and switch to node version 16 or the app will display an SSL error and will not build
+
+- nvm install @16
+- nvm use 16
+- npm run dev
+
 ## Writing Topics
 
 I will track and research different topics or scenarios I encounter in this section and elaborate upon them as well as my solution below.

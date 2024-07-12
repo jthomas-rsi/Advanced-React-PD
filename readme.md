@@ -21,4 +21,8 @@ This application must use Node version 16. In order to run this app utilize nvm 
 
 I will track and research different topics or scenarios I encounter in this section and elaborate upon them as well as my solution below.
 
-###
+### Keystone
+
+- Research and write out what Keystone is and how it is used
+- breakdown the Keystone.ts file in the backend directory
+- docs: https://keystonejs.com/docs/config/config

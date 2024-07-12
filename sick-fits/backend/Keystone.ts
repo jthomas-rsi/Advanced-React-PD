@@ -7,12 +7,13 @@ import {
 import { createAuth } from '@keystone-next/auth';
 import { KeystoneConfig } from '@keystone-next/types';
 import { User } from './schemas/User';
+import { Product } from './schemas/Products';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
   listKey: string;
   itemId: string;
-  data: { id: string; name: string; email: string }[];
+  data: typeof User[];
 };
 
 const databaseURL =
@@ -50,6 +51,7 @@ const configObject: KeystoneConfig = {
   lists: createSchema({
     // Schema items go in here
     User,
+    Product,
   }),
   ui: {
     // Show the UI only for people who pass this test

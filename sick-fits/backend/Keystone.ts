@@ -8,6 +8,7 @@ import { createAuth } from '@keystone-next/auth';
 import { KeystoneConfig } from '@keystone-next/types';
 import { User } from './schemas/User';
 import { Product } from './schemas/Products';
+import { ProductImage } from './schemas/ProductImage';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -52,6 +53,7 @@ const configObject: KeystoneConfig = {
     // Schema items go in here
     User,
     Product,
+    ProductImage,
   }),
   ui: {
     // Show the UI only for people who pass this test

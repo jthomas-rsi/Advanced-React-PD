@@ -9,6 +9,7 @@ import { KeystoneConfig } from '@keystone-next/types';
 import { User } from './schemas/User';
 import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
+import { insertSeedData } from './seed-data';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -47,7 +48,13 @@ const configObject: KeystoneConfig = {
   db: {
     adapter: 'mongoose',
     url: databaseURL,
-    // TODO Add data seeding here
+    onConnect: async (keystone) => {
+      console.log('Connected to the database');
+      if (process.argv.includes('--seed-data')) {
+        // if seed-data flag is passed in terminal load db with seed data
+        await insertSeedData(keystone);
+      }
+    },
   },
   lists: createSchema({
     // Schema items go in here

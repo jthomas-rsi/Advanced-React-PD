@@ -1,3 +1,3 @@
-const OrdersPage = () => <div>Welcome to Next.js!</div>;
+const OrdersPage = () => <div>Welcome to the Orders Page!</div>;
 
 export default OrdersPage;

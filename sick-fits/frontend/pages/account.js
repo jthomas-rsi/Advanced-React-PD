@@ -1,3 +1,3 @@
-const AccountPage = () => <div>Welcome to Next.js!</div>;
+const AccountPage = () => <div>Welcome to the Accounts Page!</div>;
 
 export default AccountPage;

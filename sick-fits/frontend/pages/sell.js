@@ -1,3 +1,3 @@
-const SellPage = () => <div>Welcome to Next.js!</div>;
+const SellPage = () => <div>Welcome to the Sell Page!</div>;
 
 export default SellPage;

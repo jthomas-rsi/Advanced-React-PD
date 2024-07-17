@@ -19,8 +19,15 @@ const ErrorStyles = styled.div`
 `;
 
 const DisplayError = ({ error }) => {
-  if (!error || !error.message) return null;
-  if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
+  const noError = !error || !error.message;
+  const showErrorMessage =
+    error?.networkError &&
+    error?.networkError.result &&
+    error?.networkError.result.errors.length;
+
+  if (noError) return null;
+
+  if (showErrorMessage) {
     return error.networkError.result.errors.map((error, i) => (
       <ErrorStyles key={i}>
         <p data-test="graphql-error">

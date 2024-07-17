@@ -1,3 +1,9 @@
-const ProductsPage = () => <div>Welcome to Next.js!</div>;
+import Products from '../components/ProductsComponent';
+
+const ProductsPage = () => (
+  <div>
+    <Products />
+  </div>
+);
 
 export default ProductsPage;

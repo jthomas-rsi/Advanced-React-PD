@@ -26,3 +26,8 @@ I will track and research different topics or scenarios I encounter in this sect
 - Research and write out what Keystone is and how it is used
 - breakdown the Keystone.ts file in the backend directory
 - docs: https://keystonejs.com/docs/config/config
+
+### Apollo Links
+
+- Research and write out what Links are in Apollo and how they apply to this project
+- docs: https://www.apollographql.com/docs/react/api/link/introduction/

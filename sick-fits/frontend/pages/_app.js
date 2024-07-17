@@ -8,7 +8,7 @@ import '../components/styles/nprogress.css';
 
 import PropTypes from 'prop-types';
 import Router from 'next/router';
-import { ApolloClient } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import PageComponent from '../components/PageComponent';
 // withData is a HOC that will provide the ApolloClient instance to all components in our app.
 // much like a context provider, but for ApolloClient.
@@ -20,11 +20,11 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp = ({ Component, pageProps, apollo }) => (
-  <ApolloClient client={apollo}>
+  <ApolloProvider client={apollo}>
     <PageComponent>
       <Component {...pageProps} />
     </PageComponent>
-  </ApolloClient>
+  </ApolloProvider>
 );
 
 MyApp.propTypes = {

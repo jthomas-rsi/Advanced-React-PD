@@ -31,3 +31,9 @@ I will track and research different topics or scenarios I encounter in this sect
 
 - Research and write out what Links are in Apollo and how they apply to this project
 - docs: https://www.apollographql.com/docs/react/api/link/introduction/
+
+### the `<fieldset/>` html element
+
+- research and write out what this element is common used for
+- show how it's used in this project
+- docs:https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset

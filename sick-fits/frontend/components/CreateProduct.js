@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import Router from 'next/router';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
+import { ALL_PRODUCTS_QUERY } from './ProductsComponent';
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -44,16 +46,25 @@ const CreateProductComponent = () => {
     CREATE_PRODUCT_MUTATION,
     {
       variables: inputs,
+      // set the refetch conditions to refetch the products query after creating a new product
+      // this will update the products list with the new product immediately
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    // resetForm();
-    await createProduct();
-    clearForm();
-    console.log(data);
+
+    // call the createProduct mutation
+    const res = await createProduct();
+
+    // clear the form after creating a new product
+    resetForm();
+
+    // once data is created, redirect user to products page
+    Router.push({
+      pathname: `/product/${res.data.createProduct.id}`,
+    });
   };
 
   return (

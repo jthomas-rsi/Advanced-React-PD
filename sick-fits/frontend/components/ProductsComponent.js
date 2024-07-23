@@ -5,7 +5,7 @@ import Product from './SingleProductComponent';
 
 // create graphql query string for fetching products
 // TODO create separate folder with files for all queries and mutations
-const ALL_PRODUCTS_QUERY = gql`
+export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY {
     allProducts {
       id

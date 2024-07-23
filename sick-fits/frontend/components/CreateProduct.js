@@ -1,8 +1,36 @@
 import { useState } from 'react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/client';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
+import DisplayError from './ErrorMessage';
 
-const CreateProduct = () => {
+const CREATE_PRODUCT_MUTATION = gql`
+  mutation CREATE_PRODUCT_MUTATION(
+    # variables for the mutation
+    $name: String!
+    $description: String!
+    $price: Int!
+    $image: Upload
+  ) {
+    createProduct(
+      data: {
+        name: $name
+        description: $description
+        price: $price
+        status: "AVAILABLE"
+        photo: { create: { image: $image, altText: $name } }
+      }
+    ) {
+      id
+      price
+      description
+      name
+    }
+  }
+`;
+
+const CreateProductComponent = () => {
   const { inputs, handleChange, resetForm, clearForm } = useForm({
     image: '',
     name: 'Cool James',
@@ -10,15 +38,28 @@ const CreateProduct = () => {
     description: 'This is a really cool guy',
   });
 
-  const handleSubmit = (e) => {
+  // utilize useMutation method to run mutation to create a new product via the form
+  // deconstruct the return payload from useMutation hook
+  const [createProduct, { loading, error, data }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      variables: inputs,
+    }
+  );
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputs);
-    resetForm();
+    // resetForm();
+    await createProduct();
+    clearForm();
+    console.log(data);
   };
 
   return (
     <Form onSubmit={(e) => handleSubmit(e)}>
-      <fieldset>
+      <DisplayError error={error} />
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="name">
           Image
           <input
@@ -69,4 +110,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default CreateProductComponent;

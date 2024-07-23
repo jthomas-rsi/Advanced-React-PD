@@ -20,6 +20,9 @@ const useForm = (initial = {}) => {
       // set the value to the uploaded image
       value = imageUpload;
     }
+    if (type === 'file') {
+      [value] = e.target.files;
+    }
 
     setInputs({
       // copy the existing state

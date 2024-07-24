@@ -42,4 +42,10 @@ I will track and research different topics or scenarios I encounter in this sect
 
 - research and write out the details behind dynamic page routing/rendering
 - show how it's used in this project
-- https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes
+- docs: https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes
+
+### Next/head for SOE injection
+
+- research the package and write out how it's used in software development
+- show how it's used in this project
+- docs: https://nextjs.org/docs/pages/api-reference/components/head

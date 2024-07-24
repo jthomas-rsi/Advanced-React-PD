@@ -37,3 +37,9 @@ I will track and research different topics or scenarios I encounter in this sect
 - research and write out what this element is common used for
 - show how it's used in this project
 - docs:https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset
+
+### dynamic page rendering in Next.js
+
+- research and write out the details behind dynamic page routing/rendering
+- show how it's used in this project
+- https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes

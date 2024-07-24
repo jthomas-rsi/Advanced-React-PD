@@ -1,4 +1,4 @@
-import Products from '../components/ProductsComponent';
+import Products from '../components/Products';
 
 const ProductsPage = () => (
   <div>

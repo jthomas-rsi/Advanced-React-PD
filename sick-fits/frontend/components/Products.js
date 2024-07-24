@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
-import Product from './SingleProductComponent';
+import Product from './Product';
 
 // create graphql query string for fetching products
 // TODO create separate folder with files for all queries and mutations

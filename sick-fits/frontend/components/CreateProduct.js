@@ -71,7 +71,7 @@ const CreateProductComponent = () => {
     <Form onSubmit={(e) => handleSubmit(e)}>
       <DisplayError error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
-        <label htmlFor="name">
+        <label htmlFor="image">
           Image
           <input
             required

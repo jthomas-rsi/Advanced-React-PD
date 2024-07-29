@@ -20,7 +20,7 @@ const Product = ({ productData }) => (
     <div className="buttonList">
       <Link
         href={{
-          pathname: 'update',
+          pathname: '/update',
           query: { id: productData.id },
         }}
       >

@@ -55,3 +55,15 @@ I will track and research different topics or scenarios I encounter in this sect
 - research and write out an explanation for the `confirm` method and how it is used
 - show how it's used in this project and how it is different from a modal or dialog
 - docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
+
+### UseQuery && UseMutation hooks from Apollo Client
+
+- research and write out an explanation for each hook is used
+- break down the different capabilities of th method like =>
+  - the `update` callback
+  - the `enabled` attribute
+  - the `data` attribute
+- use examples from the project to showcase useQuery and UseMutation hooks definition and utilization
+- docs:
+  - queries => https://www.apollographql.com/docs/react/data/queries/
+  - mutations => https://www.apollographql.com/docs/react/data/mutations

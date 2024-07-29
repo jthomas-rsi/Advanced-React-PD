@@ -11,12 +11,20 @@ const DELETE_PRODUCT_MUTATION = gql`
   }
 `;
 
+// function to find and remove product item from the cache
+const updateCache = (cache, payload) => {
+  // manually update the cache on the client to match the server
+  // find the item in the cache and then remove it
+  cache.evict(cache.identify(payload.data.deleteProduct));
+};
+
 const DeleteProduct = ({ id, children }) => {
   // pass query && id to deleteProduct mutation
   const [deleteProduct, { loading, error }] = useMutation(
     DELETE_PRODUCT_MUTATION,
     {
       variables: { id },
+      update: updateCache,
     }
   );
 

@@ -4,6 +4,7 @@ import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
+import DeleteProduct from './DeleteProduct';
 
 const Product = ({ productData }) => (
   <ItemStyles>
@@ -25,8 +26,7 @@ const Product = ({ productData }) => (
       >
         Edit ✏️
       </Link>
-      {/* <button type="button">Add To Cart</button>
-      <button type="button">Delete</button> */}
+      <DeleteProduct id={productData.id}>Delete</DeleteProduct>
     </div>
   </ItemStyles>
 );

@@ -1,9 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // this function is a hook to handle from data without using third party library
 const useForm = (initial = {}) => {
   // create a state object for our inputs
   const [inputs, setInputs] = useState(initial);
+
+  // deconstruct the initial state object to get the keys
+  const initialValues = Object.values(initial).join('');
+
+  // this function will watch for changes in the initial state object
+  // and reset the form if the initial state changes
+  // this is useful for editing forms
+  useEffect(() => {
+    setInputs(initial);
+  }, [initial, initialValues]);
 
   // this function will allow us to update the state of the form
   const handleChange = (e) => {

@@ -52,11 +52,13 @@ const UpdateProduct = ({ id }) => {
 
     // call the createProduct mutation
     const res = await updateProduct({
-      id: inputs.id,
-      name: inputs.name,
-      description: inputs.description,
-      price: inputs.price,
-    });
+      variables: {
+        id,
+        name: inputs.name,
+        description: inputs.description,
+        price: inputs.price,
+      },
+    }).catch(console.error);
 
     console.log(res);
   };
@@ -75,6 +77,7 @@ const UpdateProduct = ({ id }) => {
             name="name"
             placeholder="Name"
             onChange={handleChange}
+            defaultValue="name"
             value={inputs.name}
           />
         </label>
@@ -85,6 +88,7 @@ const UpdateProduct = ({ id }) => {
             id="price"
             name="price"
             placeholder="price"
+            defaultValue={0}
             value={inputs.price}
             onChange={handleChange}
           />
@@ -96,6 +100,7 @@ const UpdateProduct = ({ id }) => {
             name="description"
             placeholder="Description"
             onChange={handleChange}
+            defaultValue="description"
             value={inputs.description}
           />
         </label>

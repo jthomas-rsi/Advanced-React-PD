@@ -49,3 +49,9 @@ I will track and research different topics or scenarios I encounter in this sect
 - research the package and write out how it's used in software development
 - show how it's used in this project
 - docs: https://nextjs.org/docs/pages/api-reference/components/head
+
+### The `confirm()` method
+
+- research and write out an explanation for the `confirm` method and how it is used
+- show how it's used in this project and how it is different from a modal or dialog
+- docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm

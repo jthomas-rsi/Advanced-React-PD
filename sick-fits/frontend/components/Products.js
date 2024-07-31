@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Product from './Product';
+import DisplayError from './ErrorMessage';
 
 // create graphql query string for fetching products
 // TODO create separate folder with files for all queries and mutations
@@ -22,7 +23,6 @@ export const ALL_PRODUCTS_QUERY = gql`
   }
 `;
 
-// TODO create a separate folder for all styled components
 const ProductsListStyles = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -37,7 +37,7 @@ const Products = () => {
 
   // create conditional rendering for loading and error states
   if (loading) <>Loading ...</>;
-  if (error) <>Error:{error.message}</>;
+  if (error) <DisplayError error={error} />;
 
   return (
     <div>

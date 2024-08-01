@@ -8,7 +8,7 @@ import DisplayError from './ErrorMessage';
 import { perPage } from '../config';
 
 // query to fetch total count of all Products from the server
-const PAGINATION_QUERY = gql`
+export const PAGINATION_QUERY = gql`
   query PAGINATION_QUERY {
     _allProductsMeta {
       count

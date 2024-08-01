@@ -31,7 +31,7 @@ export const ALL_PRODUCTS_QUERY = gql`
   }
 `;
 
-const Products = (page) => {
+const Products = ({ page }) => {
   // useQuery hook to fetch data from the server
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
     variables: {
@@ -55,7 +55,8 @@ const Products = (page) => {
     </div>
   );
 };
-Products.propType = {
+
+Products.propTypes = {
   page: PropTypes.number,
 };
 

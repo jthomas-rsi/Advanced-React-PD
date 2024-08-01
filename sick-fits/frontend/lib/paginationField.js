@@ -28,29 +28,20 @@ const paginationField = () => ({
 
     // if items are present return them from the cache and avoid another network call
     if (items.length) {
-      console.log(
-        `There are ${items.length} items in the cache! Gonna send them to Apollo`
-      );
+      // console.log(
+      //   `There are ${items.length} items in the cache! Gonna send them to Apollo`
+      // );
       return items;
     }
 
     // fallback to network request
     return false;
-
-    // args is the first and skip values
-    // cache is the Apollo cache
-    //  first thing is to ask the read function for certain items
-    // we can either return the items because they are already in the cache
-    // or we can return undefined to make a network request
   },
   merge(existing, incoming, { args }) {
     const { first, skip } = args;
 
     // This run when the Apollo client comes back from the network with our products
     // we can then merge the two together
-
-    console.log(`Merging items from the network ${incoming.length}`);
-    console.log({ incoming });
 
     const merged = existing ? existing.slice(0) : [];
 
@@ -59,9 +50,7 @@ const paginationField = () => ({
       merged[i] = incoming[i - skip];
     }
 
-    console.log(merged);
     return merged;
   },
 });
-
 export default paginationField;

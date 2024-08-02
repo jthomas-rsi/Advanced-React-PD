@@ -4,7 +4,7 @@ import { useUser } from './User';
 
 const Nav = () => {
   const user = useUser();
-  console.log(user);
+  // console.log(user);
   return (
     <NavStyles>
       <Link href="/products">Products</Link>

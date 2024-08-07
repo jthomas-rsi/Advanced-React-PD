@@ -42,7 +42,7 @@ const SignIn = () => {
     e.preventDefault();
     console.log(inputs);
     // send the email and password to the graphqlAPI
-    // await signin().then((response) => console.log(response));
+    await signin().then((response) => console.log(response));
   };
 
   const error =

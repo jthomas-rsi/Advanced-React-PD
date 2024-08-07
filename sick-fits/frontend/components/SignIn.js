@@ -40,8 +40,9 @@ const SignIn = () => {
   // handle the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputs);
     // send the email and password to the graphqlAPI
-    await signin().then((response) => console.log(response));
+    // await signin().then((response) => console.log(response));
   };
 
   const error =
@@ -58,11 +59,10 @@ const SignIn = () => {
         <label htmlFor="email">
           Email
           <input
-            required
             type="text"
             id="email"
-            name="email@address.com"
-            autoComplete="email"
+            name="email"
+            placeholder="Your email address"
             value={inputs.email}
             onChange={handleChange}
           />

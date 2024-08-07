@@ -13,7 +13,7 @@ const useForm = (initial = {}) => {
   // this is useful for editing forms
   useEffect(() => {
     setInputs(initial);
-  }, [initial, initialValues]);
+  }, []);
 
   // this function will allow us to update the state of the form
   const handleChange = (e) => {

@@ -5,58 +5,66 @@ import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
 
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    authenticateUserWithPassword(email: $email, password: $password) {
-      ... on UserAuthenticationWithPasswordSuccess {
-        item {
-          id
-          email
-          name
-        }
-      }
-      ... on UserAuthenticationWithPasswordFailure {
-        code
-        message
-      }
+const SIGNUP_MUTATION = gql`
+  mutation SIGNUP_MUTATION(
+    $email: String!
+    $name: String!
+    $password: String!
+  ) {
+    createUser(data: { email: $email, name: $name, password: $password }) {
+      id
+      email
+      name
     }
   }
 `;
 
-const SignIn = () => {
+const SignUp = () => {
   // form controls and state
   const { inputs, handleChange, resetForm, clearForm } = useForm({
+    name: '',
     email: '',
     password: '',
   });
 
   // mutation hook
-  const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
+  const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs,
-    // refetch the currently logged in user
-    refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   // handle the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
+    const res = await signup().catch((error) => console.error(error));
+    console.log(res);
+    console.log({ data, loading, error });
     resetForm();
     // send the email and password to the graphqlAPI
-    await signin().then((response) => console.log(response));
   };
-
-  const error =
-    data?.authenticateUserWithPassword.__typename ===
-    'UserAuthenticationWithPasswordFailure'
-      ? data?.authenticateUserWithPassword
-      : undefined;
 
   return (
     <Form method="POST" onSubmit={(e) => handleSubmit(e)}>
-      <h2>Sign Into Your Account</h2>
+      <h2>Sign Up For An Account</h2>
       <DisplayError error={error} />
       <fieldset>
+        {data?.createUser && (
+          <p>
+            Signed up with {data.createUser.email} - Please go ahead and sign
+            in!
+          </p>
+        )}
+        <label htmlFor="name">
+          Your Name
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Full name"
+            autoComplete="name"
+            value={inputs.name}
+            onChange={handleChange}
+          />
+        </label>
         <label htmlFor="email">
           Email
           <input
@@ -80,11 +88,11 @@ const SignIn = () => {
           />
         </label>
         <button type="submit" onClick={() => {}}>
-          Sign In
+          Sign Up
         </button>
       </fieldset>
     </Form>
   );
 };
 
-export default SignIn;
+export default SignUp;

@@ -10,6 +10,7 @@ import { User } from './schemas/User';
 import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
+import { sendPasswordResetEmail } from './lib/mail';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -36,8 +37,10 @@ const { withAuth } = createAuth({
     // TODO Add in initial roles here
   },
   passwordResetLink: {
-    sendToken(args) {
-      console.log(args);
+    async sendToken(args) {
+      // send user reset email response
+      const { identity, token } = args;
+      await sendPasswordResetEmail(token, identity);
     },
   },
 });

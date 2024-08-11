@@ -26,6 +26,22 @@ const makeANiceEmail = (text: string): string =>
     </div>
     `;
 
+export interface MailResponse {
+  accepted?: string[] | null;
+  rejected?: string[] | null;
+  envelopeTime: number;
+  messageTime: number;
+  messageSize: number;
+  response: string;
+  envelope: { from: string; to?: string[] | null };
+  messageId: string;
+}
+
+export interface Envelope {
+  from: string;
+  to?: string[] | null;
+}
+
 export const sendPasswordResetEmail = async (
   resetToken: string,
   to: string
@@ -40,5 +56,9 @@ export const sendPasswordResetEmail = async (
     `),
   });
 
-  console.log(info);
+  // create helper function that renders link to view email in browser
+  if (process.env.MAIL_USER.includes('ethereal.email')) {
+    const url = nodemailer.getTestMessageUrl(info);
+    console.log(`💌 Message Sent! Preview it at ${url as string}`);
+  }
 };

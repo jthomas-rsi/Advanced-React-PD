@@ -11,6 +11,7 @@ import { Product } from './schemas/Products';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+import { CartItem } from './schemas/CartItem';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -69,6 +70,7 @@ const configObject: KeystoneConfig = {
     User,
     Product,
     ProductImage,
+    CartItem,
   }),
   ui: {
     // Show the UI only for people who pass this test

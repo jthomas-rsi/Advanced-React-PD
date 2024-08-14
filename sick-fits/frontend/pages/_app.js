@@ -13,6 +13,7 @@ import PageComponent from '../components/PageComponent';
 // withData is a HOC that will provide the ApolloClient instance to all components in our app.
 // much like a context provider, but for ApolloClient.
 import withData from '../lib/withData';
+import { CartStateProvider } from '../lib/cartState';
 
 // router event listener to show progress bar on route change
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -21,9 +22,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp = ({ Component, pageProps, apollo }) => (
   <ApolloProvider client={apollo}>
-    <PageComponent>
-      <Component {...pageProps} />
-    </PageComponent>
+    <CartStateProvider>
+      <PageComponent>
+        <Component {...pageProps} />
+      </PageComponent>
+    </CartStateProvider>
   </ApolloProvider>
 );
 

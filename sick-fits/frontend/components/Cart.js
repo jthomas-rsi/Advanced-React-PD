@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CartStyles from './styles/CartStyles';
+import CloseButton from './styles/CloseButton';
 import Supreme from './styles/Supreme';
 import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
+import { useCart } from '../lib/cartState';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -23,8 +25,10 @@ const CartItemStyles = styled.li`
 
 const CartItem = ({ cartItem }) => {
   const { product } = cartItem;
+  const cartData = useCart();
+  console.log({ cartData });
   if (!product) return null;
-//   console.log({ product });
+  //   console.log({ product });
   return (
     <CartItemStyles>
       <img
@@ -47,13 +51,17 @@ const CartItem = ({ cartItem }) => {
 
 const Cart = () => {
   const me = useUser();
+  const { isCartOpen, closeCart } = useCart();
   if (!me) return null;
-//   console.log(me);
+  //   console.log(me);
   return (
-    <CartStyles open>
+    <CartStyles open={isCartOpen}>
       <header>
         <Supreme>{me.name}'s Cart</Supreme>
       </header>
+      <CloseButton type="button" onClick={closeCart}>
+        &times;
+      </CloseButton>
       <ul>
         {me.cart.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />

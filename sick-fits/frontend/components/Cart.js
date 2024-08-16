@@ -7,6 +7,7 @@ import { useUser } from './User';
 import formatMoney from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/cartState';
+import RemoveFromCart from './RemoveFromCart';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -28,7 +29,6 @@ const CartItem = ({ cartItem }) => {
   const cartData = useCart();
   console.log({ cartData });
   if (!product) return null;
-  //   console.log({ product });
   return (
     <CartItemStyles>
       <img
@@ -45,6 +45,7 @@ const CartItem = ({ cartItem }) => {
           </em>
         </p>
       </div>
+      <RemoveFromCart id={cartItem.id} />
     </CartItemStyles>
   );
 };
@@ -53,7 +54,6 @@ const Cart = () => {
   const me = useUser();
   const { isCartOpen, closeCart } = useCart();
   if (!me) return null;
-  //   console.log(me);
   return (
     <CartStyles open={isCartOpen}>
       <header>

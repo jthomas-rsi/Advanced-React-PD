@@ -67,3 +67,10 @@ I will track and research different topics or scenarios I encounter in this sect
 - docs:
   - queries => https://www.apollographql.com/docs/react/data/queries/
   - mutations => https://www.apollographql.com/docs/react/data/mutations
+
+### React Transition group package
+
+- research and write an explanation for the animation package
+- break down difference between using CSS traditional transitions and this package
+- use examples from the project: sickfits\frontend\components\CartCount.js
+- documentation: https://reactcommunity.org/react-transition-group/

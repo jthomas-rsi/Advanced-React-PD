@@ -10,8 +10,8 @@ const SEARCH_PRODUCTS_QUERY = gql`
     searchTerms: allProducts(
       where: {
         OR: [
-          { name: { contains: $searchTerm } }
-          { description: { contains: $searchTerm } }
+          { name_contains_i: $searchTerm }
+          { description_contains_i: $searchTerm }
         ]
       }
     ) {

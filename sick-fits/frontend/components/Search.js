@@ -35,27 +35,36 @@ const Search = () => {
     }
   );
 
-  console.log({ data });
+  // console.log({ data });
+
+  const items = data?.searchTerms || [];
 
   const findItemsButChill = debounce(findItems, 350);
 
   resetIdCounter();
 
-  const { inputValue, getMenuProps, getInputProps, getComboboxProps } =
-    useCombobox({
-      items: [],
-      onInputValueChange() {
-        console.log('Input changed!');
-        findItemsButChill({
-          variables: {
-            searchTerm: inputValue,
-          },
-        });
-      },
-      onSelectedItemChange() {
-        console.log('Selected item changed!');
-      },
-    });
+  const {
+    isOpen,
+    inputValue,
+    highlightedIndex,
+    getItemProps,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+  } = useCombobox({
+    items,
+    onInputValueChange() {
+      console.log('Input changed!');
+      findItemsButChill({
+        variables: {
+          searchTerm: inputValue,
+        },
+      });
+    },
+    onSelectedItemChange() {
+      console.log('Selected item changed!');
+    },
+  });
 
   return (
     <SearchStyles>
@@ -70,10 +79,24 @@ const Search = () => {
         />
       </div>
       <DropDown {...getMenuProps()}>
-        <DropDownItem>Hey!</DropDownItem>
-        <DropDownItem>Hey!</DropDownItem>
-        <DropDownItem>Hey!</DropDownItem>
-        <DropDownItem>Hey!</DropDownItem>
+        {isOpen &&
+          items.map((item, index) => (
+            <DropDownItem
+              {...getItemProps({ item })}
+              key={item.id}
+              highlighted={index === highlightedIndex}
+            >
+              <img
+                src={item?.photo?.image?.publicUrlTransformed}
+                alt={item.name}
+                width="50px"
+              />
+              {item.name}
+            </DropDownItem>
+          ))}
+        {isOpen && !items.length && !loading && (
+          <DropDownItem>Sorry, no items found for {inputValue}</DropDownItem>
+        )}
       </DropDown>
     </SearchStyles>
   );

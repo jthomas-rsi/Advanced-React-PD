@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useLazyQuery } from '@apollo/client';
 import { resetIdCounter, useCombobox } from 'downshift';
 import gql from 'graphql-tag';
-import { useLazyQuery } from '@apollo/client';
 import debounce from 'lodash.debounce';
 import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
@@ -10,8 +10,8 @@ const SEARCH_PRODUCTS_QUERY = gql`
     searchTerms: allProducts(
       where: {
         OR: [
-          { name_contains_i: $searchTerm }
-          { description_contains_i: $searchTerm }
+          { name: { contains: $searchTerm } }
+          { description: { contains: $searchTerm } }
         ]
       }
     ) {
@@ -65,7 +65,7 @@ const Search = () => {
             id: 'search',
             placeholder: 'Search for an item',
             type: 'search',
-            className: 'loading',
+            className: loading ? 'loading' : null,
           })}
         />
       </div>

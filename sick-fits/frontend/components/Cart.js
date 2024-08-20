@@ -26,8 +26,8 @@ const CartItemStyles = styled.li`
 
 const CartItem = ({ cartItem }) => {
   const { product } = cartItem;
-  const cartData = useCart();
-  console.log({ cartData });
+  // const cartData = useCart();
+  // console.log({ cartData });
   if (!product) return null;
   return (
     <CartItemStyles>

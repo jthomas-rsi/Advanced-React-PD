@@ -3,6 +3,7 @@ import { useLazyQuery } from '@apollo/client';
 import { resetIdCounter, useCombobox } from 'downshift';
 import gql from 'graphql-tag';
 import debounce from 'lodash.debounce';
+import { useRouter } from 'next/dist/client/router';
 import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
 const SEARCH_PRODUCTS_QUERY = gql`
@@ -27,6 +28,7 @@ const SEARCH_PRODUCTS_QUERY = gql`
 `;
 
 const Search = () => {
+  const router = useRouter();
   // LazyQuery is used to run a query when you want to, not when the component mounts
   const [findItems, { data, loading, error }] = useLazyQuery(
     SEARCH_PRODUCTS_QUERY,
@@ -61,9 +63,14 @@ const Search = () => {
         },
       });
     },
-    onSelectedItemChange() {
-      console.log('Selected item changed!');
+    onSelectedItemChange({ selectedItem }) {
+      // console.log('Selected item changed!');
+      console.log({ selectedItem });
+      router.push({
+        pathname: `/product/${selectedItem.id}`,
+      });
     },
+    itemToString: (item) => item?.name || '',
   });
 
   return (

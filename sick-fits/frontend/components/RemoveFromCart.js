@@ -29,7 +29,7 @@ const update = (cache, payload) => {
 };
 
 const RemoveFromCart = ({ id }) => {
-  console.log({ id });
+  // console.log({ id });
   const [removeFromCart, { loading }] = useMutation(REMOVE_FROM_CART_MUTATION, {
     variables: { id },
     update,

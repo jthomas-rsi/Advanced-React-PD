@@ -9,15 +9,16 @@ const Nav = () => {
   const user = useUser();
   const { toggleCart } = useCart();
 
-  // console.log({ user });
-
   const totalItems = user?.cart.reduce(
     (tally, cartItem) => tally + cartItem.quantity,
     0
   );
 
+  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
   return (
     <NavStyles>
+      {process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}
       <Link href="/products">Products</Link>
       {user && (
         <>

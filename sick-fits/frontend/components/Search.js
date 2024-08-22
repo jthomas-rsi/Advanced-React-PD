@@ -37,8 +37,6 @@ const Search = () => {
     }
   );
 
-  // console.log({ data });
-
   const items = data?.searchTerms || [];
 
   const findItemsButChill = debounce(findItems, 350);

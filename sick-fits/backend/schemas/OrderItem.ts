@@ -11,8 +11,7 @@ export const OrderItem = list({
       },
     }),
     photo: relationship({
-      // relationship field
-      ref: 'ProductImage.product', // relationship to ProductImage schema
+      ref: 'ProductImage',
       ui: {
         displayMode: 'cards',
         cardFields: ['image', 'altText'],
@@ -20,19 +19,8 @@ export const OrderItem = list({
         inlineEdit: { fields: ['image', 'altText'] },
       },
     }),
-    status: select({
-      // dropdown field
-      options: [
-        { label: 'Draft', value: 'DRAFT' },
-        { label: 'Draft', value: 'AVAILABLE' },
-        { label: 'Draft', value: 'UNAVAILABLE' },
-      ],
-      defaultValue: 'DRAFT', // setting default value of sataus dropdown to DRAFT
-      ui: {
-        displayMode: 'segmented-control',
-        createView: { fieldMode: 'hidden' },
-      },
-    }),
-    price: integer(), // integer input field
+    price: integer(),
+    quantity: integer(),
+    order: relationship({ ref: 'Order.items' }), // relationship to Order schema
   },
 });

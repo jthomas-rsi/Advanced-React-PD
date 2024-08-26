@@ -13,6 +13,8 @@ import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { CartItem } from './schemas/CartItem';
 import { extendGraphqlSchema } from './mutations/index';
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -72,6 +74,8 @@ const configObject: KeystoneConfig = {
     Product,
     ProductImage,
     CartItem,
+    OrderItem,
+    Order,
   }),
   extendGraphqlSchema,
   ui: {

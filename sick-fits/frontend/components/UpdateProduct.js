@@ -60,7 +60,7 @@ const UpdateProduct = ({ id }) => {
       },
     }).catch(console.error);
 
-    console.log(res);
+    console.log({ res });
   };
 
   if (loading) return <p>Loading...</p>;

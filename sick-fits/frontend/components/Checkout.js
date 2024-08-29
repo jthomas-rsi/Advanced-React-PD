@@ -1,5 +1,6 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import {
   Elements,
   CardElement,
@@ -8,6 +9,7 @@ import {
 } from '@stripe/react-stripe-js';
 import styled from 'styled-components';
 import nProgress from 'nprogress';
+import gql from 'graphql-tag';
 import SickButton from './styles/SickButton';
 
 const CheckoutFormStyles = styled.form`
@@ -19,16 +21,32 @@ const CheckoutFormStyles = styled.form`
   grid-gap: 1rem;
 `;
 
+const CREATE_ORDER_MUTATION = gql`
+  mutation CREATE_ORDER_MUTATION($token: String!) {
+    checkout(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
+
 // TODO replace this string with env variable later
-const stripeLib = loadStripe(
-  'pk_test_51PqisKB2eOjmLVyzyTIuT37726oVl0XKvOf1S5QCBfawuQ5rzKp4XSSBGUpvWMFUs83vYaJUnbHWbJl0jBOaJRHM00gdozrwCl'
-);
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
+const stripeLib = loadStripe(stripeKey);
 
 const CheckoutForm = () => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const [checkout, { error: graphqlError }] = useMutation(
+    CREATE_ORDER_MUTATION
+  );
 
   const handleSubmit = async (e) => {
     // 1. stop form from submitting and turn the loader on
@@ -43,13 +61,21 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement), // get the card element from the stripe element
     });
     console.log({ paymentMethod });
-    console.log(error);
+    // console.log(error);
     // 4. handle any errors from stripe
     if (error) {
       setError(error);
+      nProgress.done(); // turn off the progress bar
+      return; // stop the checkout flow because there is an error
     }
     // 5. send the token from step 3 to our keystone server via a custom mutation
+    const order = await checkout({
+      variables: {
+        token: paymentMethod.id,
+      },
+    });
 
+    console.log('Finished with the order!!');
     // 6. change the page to view the order
     // 7. close the cart
     // 8. turn the loader off, set loading to false
@@ -60,6 +86,9 @@ const CheckoutForm = () => {
   return (
     <CheckoutFormStyles onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: '12px' }}>{error.message}</p>}
+      {graphqlError && (
+        <p style={{ fontSize: '12px' }}>{graphqlError.message}</p>
+      )}
       <CardElement />
       <SickButton>Check Out Now</SickButton>
     </CheckoutFormStyles>

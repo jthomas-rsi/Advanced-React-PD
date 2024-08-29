@@ -3,7 +3,7 @@ import RequestReset from '../components/RequestReset';
 import Reset from '../components/Reset';
 
 const ResetPage = ({ query }) => {
-  console.log(query);
+  // console.log(query);
   const { token } = query;
 
   if (!query?.token) {

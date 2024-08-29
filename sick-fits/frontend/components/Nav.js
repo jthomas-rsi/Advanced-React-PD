@@ -14,7 +14,7 @@ const Nav = () => {
     0
   );
 
-  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+  // console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY); // variable showing as undefined in console
 
   return (
     <NavStyles>

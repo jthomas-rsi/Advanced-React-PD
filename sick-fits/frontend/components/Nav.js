@@ -10,11 +10,9 @@ const Nav = () => {
   const { toggleCart } = useCart();
 
   const totalItems = user?.cart.reduce(
-    (tally, cartItem) => tally + cartItem.quantity,
+    (tally, cartItem) => tally + (cartItem.product ? cartItem.quantity : 0),
     0
   );
-
-  // console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY); // variable showing as undefined in console
 
   return (
     <NavStyles>

@@ -91,7 +91,7 @@ console.log({amount})
   });
 
   // .6 clean up any old cart items
-  const cartItemIds = user.cart.map(cartItem => cartItem.id);
+  const cartItemIds = user.cart.map(cartItem => cartItem.id); // access the unfiltered cart items list to delete them
   
   // delete all existing the cart items
   await context.lists.CartItem.deleteMany({

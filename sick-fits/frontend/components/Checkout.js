@@ -1,6 +1,7 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
 import {
   Elements,
   CardElement,
@@ -10,7 +11,9 @@ import {
 import styled from 'styled-components';
 import nProgress from 'nprogress';
 import gql from 'graphql-tag';
+import { useCart } from '../lib/cartState';
 import SickButton from './styles/SickButton';
+import CURRENT_USER_QUERY from './User';
 
 const CheckoutFormStyles = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.4);
@@ -44,8 +47,13 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const router = useRouter();
+  const { closeCart } = useCart();
   const [checkout, { error: graphqlError }] = useMutation(
-    CREATE_ORDER_MUTATION
+    CREATE_ORDER_MUTATION,
+    {
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    }
   );
 
   const handleSubmit = async (e) => {
@@ -77,7 +85,13 @@ const CheckoutForm = () => {
 
     console.log('Finished with the order!!');
     // 6. change the page to view the order
+    console.log({ order });
+    router.push({
+      pathname: `/order/[id]`,
+      query: { id: order.data.checkout.id },
+    });
     // 7. close the cart
+    closeCart();
     // 8. turn the loader off, set loading to false
     setLoading(false);
     nProgress.done();

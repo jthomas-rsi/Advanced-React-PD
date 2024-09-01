@@ -36,11 +36,7 @@ const SingleOrderPage = ({ query }) => {
     variables: { id },
   });
 
-  console.log({ data });
-
-  //   const {
-  //     order: { id: orderId, total, charge, items },
-  //   } = data;
+  //   console.log({ data });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <ErrorMessage error={error} />;
@@ -67,35 +63,18 @@ const SingleOrderPage = ({ query }) => {
         <span>{data.order.items.length}</span>
       </p>
       <div>
-        {
-          data.order.items.map((item) => (
-            <div className="order-item" key={item.id}>
-              <img
-                src={item.photo.image.publicUrlTransformed}
-                alt={item.name}
-              />
-              <div className="item-details">
-                <h2>{item.name}</h2>
-                <p>Qty: {item.quantity}</p>
-                <p>Each: {formatMoney(item.price)}</p>
-                <p>SubTotal: {formatMoney(item.price * item.quantity)}</p>
-                <p>{item.description}</p>
-              </div>
+        {data.order.items.map((item) => (
+          <div className="order-item" key={item.id}>
+            <img src={item.photo.image.publicUrlTransformed} alt={item.name} />
+            <div className="item-details">
+              <h2>{item.name}</h2>
+              <p>Qty: {item.quantity}</p>
+              <p>Each: {formatMoney(item.price)}</p>
+              <p>SubTotal: {formatMoney(item.price * item.quantity)}</p>
+              <p>{item.description}</p>
             </div>
-          ))
-          //   items.map((item) => (
-          //     <div className="order-item" key={item.id}>
-          //       <img src={item.photo.image.publicUrlTransformed} alt={item.name} />
-          //       <div className="item-details">
-          //         <h2>{item.name}</h2>
-          //         <p>Qty: {item.quantity}</p>
-          //         <p>Each: {formatMoney(item.price)}</p>
-          //         <p>SubTotal: {formatMoney(item.price * item.quantity)}</p>
-          //         <p>{item.description}</p>
-          //       </div>
-          //     </div>
-          //   )
-        }
+          </div>
+        ))}
       </div>
     </OrderStyles>
   );

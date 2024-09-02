@@ -7,7 +7,7 @@ import {
 import { createAuth } from '@keystone-next/auth';
 import { KeystoneConfig } from '@keystone-next/types';
 import { User } from './schemas/User';
-import { Product } from './schemas/Products';
+import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
@@ -16,6 +16,7 @@ import { extendGraphqlSchema } from './mutations/index';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
 import { Role } from './schemas/Role';
+import { permissionsList } from './schemas/fields';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -87,8 +88,9 @@ const configObject: KeystoneConfig = {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       Boolean(session?.data),
   },
+  // querying different information of session token for user
   session: withItemData(statelessSessions(sessionConfig), {
-    User: 'id name email',
+    User: `id name email role { ${permissionsList.join(' ')} }`,
   }),
 };
 

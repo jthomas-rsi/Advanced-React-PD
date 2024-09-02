@@ -1,9 +1,14 @@
 import { text, select, integer, relationship } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
+import { isSignedIn } from '../access';
 
 export const Product = list({
-  // TODO
-  // access
+  access: {
+    create: isSignedIn,
+    read: isSignedIn,
+    update: isSignedIn,
+    delete: isSignedIn,
+  },
   fields: {
     // list the fields to be rendered in the UI of the Keystone admin for created products
     name: text({ isRequired: true }), // text input field

@@ -15,6 +15,7 @@ import { CartItem } from './schemas/CartItem';
 import { extendGraphqlSchema } from './mutations/index';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
+import { Role } from './schemas/Role';
 
 // TODO fix this type so it works with isAccessAllowed function in UI of configuration object
 type KeystoneSessionInformation = {
@@ -76,6 +77,7 @@ const configObject: KeystoneConfig = {
     CartItem,
     OrderItem,
     Order,
+    Role,
   }),
   extendGraphqlSchema,
   ui: {

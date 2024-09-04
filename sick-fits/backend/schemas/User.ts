@@ -8,7 +8,6 @@ export const User = list({
     name: text({ isRequired: true }),
     email: text({ isRequired: true, isUnique: true }),
     password: password(),
-    // TODO Add roles, cart and orders
     cart: relationship({
       ref: 'CartItem.user',
       many: true, // one user can have many cart items
@@ -21,6 +20,11 @@ export const User = list({
     role: relationship({
       ref: 'Role.assignedTo',
       // TODO add access control here (role based)
+    }),
+    products: relationship({
+      // create a relationship between the user and the products they create
+      ref: 'Product.user',
+      many: true,
     }),
   },
 });

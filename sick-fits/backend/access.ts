@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { ListAccessArgs } from './types';
 import { permissionsList } from './schemas/fields';
 
@@ -55,3 +57,47 @@ export const permissions = {
 };
 
 // Rule based function
+// Rules can return a boolean - yes or no - or a filter which limits which products they can CRUD.
+export const rules = {
+  canManageProducts({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // check to see if permission is on user data in session
+    if (permissions.canManageProducts({ session })) {
+      return true;
+    }
+    return { user: { id: session.itemId } }; // check to see if the own this item
+  },
+  canOrder({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // check to see if permission is on user data in session
+    if (permissions.canManageCart({ session })) {
+      return true;
+    }
+    return { user: { id: session.itemId } }; // user can only update their own order items
+  },
+  canManageOrderItems({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // check to see if permission is on user data in session
+    if (permissions.canManageCart({ session })) {
+      return true;
+    }
+    return { order: { user: { id: session.itemId } } }; // user can only update their own order items
+  },
+  canReadProducts({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // check the session object for permissions set to te user data object
+    if (permissions.canManageProducts({ session })) {
+      return true; // they can read everything
+    }
+    // they should only see available products (based on the status field)
+    return { status: 'AVAILABLE' }; // uses a where clause to filter only available products
+  },
+};

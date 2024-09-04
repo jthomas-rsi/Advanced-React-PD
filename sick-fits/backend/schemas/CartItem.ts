@@ -1,8 +1,15 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { text, select, integer, relationship } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
+import { rules, isSignedIn } from '../access';
 
 export const CartItem = list({
-  // TODO create a custom label here
+  access: {
+    create: isSignedIn, // anyone who is signed in can create a cart item
+    read: rules.canOrder,
+    update: rules.canOrder,
+    delete: rules.canOrder,
+  },
   ui: {
     listView: {
       initialColumns: ['product', 'quantity', 'user'],

@@ -34,8 +34,8 @@ export const Product = list({
       // dropdown field
       options: [
         { label: 'Draft', value: 'DRAFT' },
-        { label: 'Draft', value: 'AVAILABLE' },
-        { label: 'Draft', value: 'UNAVAILABLE' },
+        { label: 'Available', value: 'AVAILABLE' },
+        { label: 'Unavailable', value: 'UNAVAILABLE' },
       ],
       defaultValue: 'DRAFT', // setting default value of sataus dropdown to DRAFT
       ui: {

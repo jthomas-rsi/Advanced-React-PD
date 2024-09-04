@@ -60,34 +60,40 @@ export const permissions = {
 // Rules can return a boolean - yes or no - or a filter which limits which products they can CRUD.
 export const rules = {
   canManageProducts({ session }: ListAccessArgs) {
+    // if they user isn't signed in return error message
     if (!isSignedIn({ session })) {
       return false;
     }
-    // check to see if permission is on user data in session
+    // Does this user have the canManageProducts permission assigned to their user
     if (permissions.canManageProducts({ session })) {
       return true;
     }
-    return { user: { id: session.itemId } }; // check to see if the own this item
+    // If not, do they own this item
+    return { user: { id: session.itemId } };
   },
   canOrder({ session }: ListAccessArgs) {
+    // if they user isn't signed in return error message
     if (!isSignedIn({ session })) {
       return false;
     }
-    // check to see if permission is on user data in session
+    // Does this user have the canManageCart permission assigned to their user
     if (permissions.canManageCart({ session })) {
       return true;
     }
-    return { user: { id: session.itemId } }; // user can only update their own order items
+    // If not, do they own this item
+    return { user: { id: session.itemId } };
   },
   canManageOrderItems({ session }: ListAccessArgs) {
+    // if they user isn't signed in return error message
     if (!isSignedIn({ session })) {
       return false;
     }
-    // check to see if permission is on user data in session
+    // Does this user have the canManageCart permission assigned to their user
     if (permissions.canManageCart({ session })) {
       return true;
     }
-    return { order: { user: { id: session.itemId } } }; // user can only update their own order items
+    // If not, do they own this order
+    return { order: { user: { id: session.itemId } } };
   },
   canReadProducts({ session }: ListAccessArgs) {
     if (!isSignedIn({ session })) {

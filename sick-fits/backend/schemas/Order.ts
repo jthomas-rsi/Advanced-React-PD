@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { text, integer, relationship, virtual } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
 import formatMoney from '../lib/formatMoney';
-import { isSignedIn } from '../access';
+import { isSignedIn, rules } from '../access';
 
 export const Order = list({
   access: {
     create: isSignedIn,
-    read: () => true,
+    read: rules.canOrder,
     update: () => false,
     delete: () => false,
   },

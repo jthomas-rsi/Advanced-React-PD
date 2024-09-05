@@ -106,4 +106,16 @@ export const rules = {
     // they should only see available products (based on the status field)
     return { status: 'AVAILABLE' }; // uses a where clause to filter only available products
   },
+  canManageUsers({ session }: ListAccessArgs) {
+    // if they user isn't signed in return error message
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    // Does this user have the canManageCart permission assigned to their user
+    if (permissions.canManageUsers({ session })) {
+      return true;
+    }
+    // If not, they can only update themselves
+    return { id: session.itemId };
+  },
 };

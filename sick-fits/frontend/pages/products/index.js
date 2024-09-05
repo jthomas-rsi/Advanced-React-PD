@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Pagination from '../../components/Pagination';
 import Products from '../../components/Products';
+import PleaseSignIn from '../../components/PleasSignIn';
 
 const ProductsPage = () => {
   // destructure current page from router object
@@ -11,11 +12,11 @@ const ProductsPage = () => {
   const page = parseInt(query.page);
 
   return (
-    <div>
+    <PleaseSignIn>
       <Pagination page={page || 1} />
       <Products page={page || 1} />
       <Pagination page={page || 1} />
-    </div>
+    </PleaseSignIn>
   );
 };
 

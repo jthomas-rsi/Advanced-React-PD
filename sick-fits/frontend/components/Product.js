@@ -12,7 +12,7 @@ const Product = ({ productData }) => (
   <ItemStyles>
     <img
       src={productData?.photo?.image?.publicUrlTransformed}
-      alt={productData.name}
+      alt={productData.name ?? ''}
     />
     <Title>
       <Link href={`/product/${productData.id}`}>{productData.name}</Link>

@@ -5,19 +5,20 @@ import { PAGINATION_QUERY } from '../components/Pagination';
 casual.seed(777);
 
 const fakeItem = () => ({
-  // __typename: 'Item',
-  id: 'abc123',
-  price: 5000,
-  user: null,
+  id: '6695cadeb72f324aac2a7f72',
+  name: 'KITH Hoodie',
+  price: 23562,
+  description: 'Love this hoodie',
   photo: {
-    id: 'abc123',
-    altText: 'dogs are best',
+    id: '6695cadeb72f324aac2a7f71',
     image: {
-      publicUrlTransformed: 'dog.jpg',
+      publicUrlTransformed:
+        'https://res.cloudinary.com/wesbos/image/upload/v1579815935/sick-fits-keystone/5e2a13ff689b2835ae71d1a7.jpg',
+      __typename: 'CloudinaryImage_File',
     },
+    __typename: 'ProductImage',
   },
-  name: 'dogs are best',
-  description: 'dogs',
+  __typename: 'Product',
 });
 
 const fakeUser = (overrides) => ({

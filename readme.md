@@ -78,3 +78,13 @@ I will track and research different topics or scenarios I encounter in this sect
 - break down difference between using CSS traditional transitions and this package
 - use examples from the project: sickfits\frontend\components\CartCount.js
 - documentation: https://reactcommunity.org/react-transition-group/
+
+### React Testing Library && Jest Package
+
+- research and write an explanation for the Testing library and Framework
+- breakdown the types of testing used in project:
+  -- Component testing,
+  -- Snapshot testing,
+  -- Testing GraphQl queries
+  -- Mocking Data
+  -- Mocking #rd parties

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleProduct component renders with proper data 1`] = `
+<div
+  class="SingleProduct__ProductStyles-sc-1kapz8w-0 gtRdAo"
+  data-testid="singleProduct"
+>
+  <img
+    src="https://res.cloudinary.com/wesbos/image/upload/v1579815935/sick-fits-keystone/5e2a13ff689b2835ae71d1a7.jpg"
+  />
+  <div
+    class="details"
+  >
+    <h2>
+      KITH Hoodie
+    </h2>
+    <p>
+      Love this hoodie
+    </p>
+  </div>
+</div>
+`;

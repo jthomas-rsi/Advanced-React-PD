@@ -45,8 +45,6 @@ const AnimationStyles = styled.span`
 `;
 
 const CartCount = ({ count }) => (
-  // console.log({ count });
-
   <AnimationStyles>
     <TransitionGroup>
       <CSSTransition

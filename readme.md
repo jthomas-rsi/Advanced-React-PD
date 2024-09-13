@@ -88,3 +88,5 @@ I will track and research different topics or scenarios I encounter in this sect
   -- Testing GraphQl queries
   -- Mocking Data
   -- Mocking #rd parties
+- skipping tests it.only, fit, xit
+  -- explain these terms or keywords and how they are helpful to testing flow

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination Testing suite  Component renders pagination for 10 items 1`] = `
+<div>
+  <div
+    class="PaginationStyles-sc-aduuar-0 kBOZQL"
+    data-testid="paginationContainer"
+  >
+    <a
+      aria-disabled="true"
+      data-testid="prevPage-btn"
+      href="/products/0"
+    >
+       
+      ← Prev
+       
+    </a>
+    <p
+      data-testid="pageCountText"
+    >
+      Page 
+      1
+       of 
+      5
+       
+    </p>
+    <p>
+      10
+       items total
+    </p>
+    <a
+      aria-disabled="false"
+      data-testid="nextPage-btn"
+      href="/products/2"
+    >
+       
+      Next →
+       
+    </a>
+  </div>
+</div>
+`;

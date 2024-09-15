@@ -7,7 +7,7 @@ import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
 
-const CREATE_PRODUCT_MUTATION = gql`
+export const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
     # variables for the mutation
     $name: String!
@@ -35,9 +35,9 @@ const CREATE_PRODUCT_MUTATION = gql`
 const CreateProductComponent = () => {
   const { inputs, handleChange, resetForm, clearForm } = useForm({
     image: '',
-    name: 'Cool James',
-    price: 12345,
-    description: 'This is a really cool guy',
+    name: '',
+    price: 0,
+    description: '',
   });
 
   // utilize useMutation method to run mutation to create a new product via the form
